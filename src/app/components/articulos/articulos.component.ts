@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Articulo } from 'src/app/clases/articulo';
+import { ArticulosService } from 'src/app/services/articulos.service';
 
 @Component({
   selector: 'app-articulos',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticulosComponent implements OnInit {
 
-  constructor() { }
+  articulos: Articulo[];
+  valor: boolean;
+
+  constructor(private articulosService: ArticulosService) {
+    this.valor = true;
+  }
 
   ngOnInit(): void {
+    this.articulos = this.articulosService.getArticulos();
+  }
+
+  mostrarOcultar() {
+    this.valor = !this.valor;
   }
 
 }

@@ -1,1 +1,19 @@
-<p>articulos works!</p>
+<button type="button" (click)="mostrarOcultar()" class="btn btn-primary my-3">Ver/Ocultar</button>
+
+<table class="table" *ngIf="valor">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let articulo of articulos">
+            <th scope="row">{{articulo.id}}</th>
+            <td>{{articulo.nombre}}</td>
+            <td>{{articulo.descripcion}}</td>
+            <td>{{articulo.precio | currency}}</td>
+        </tr>
+</table>

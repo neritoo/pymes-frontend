@@ -13,4 +13,9 @@ export class ArticulosService {
   getArticulos(): Articulo[] {
     return ARTICULOS;
   }
+
+  getArticulo(id: number): Articulo {
+    return ARTICULOS[id - 1];
+  }
+
 }

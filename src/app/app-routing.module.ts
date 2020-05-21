@@ -10,12 +10,9 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'articulos', component: ArticulosComponent },
   { path: 'articulo/:id', component: DetalleArticuloComponent },
-<<<<<<< HEAD
-  { path: '**', pathMatch: 'full', redirectTo: 'articulos'}
-=======
-  { path:'articulos-familias', component: ArticulosFamiliasComponent },
+  { path: 'articulos-familias', component: ArticulosFamiliasComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}
->>>>>>> 2d22bf97aa8d083d06b3aad2f26832ce95b4e319
+
 ];
 
 @NgModule({

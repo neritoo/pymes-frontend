@@ -10,18 +10,11 @@ import { ArticulosService } from 'src/app/services/articulos.service';
 export class ArticulosComponent implements OnInit {
 
   articulos: Articulo[];
-  valor: boolean;
 
-  constructor(private articulosService: ArticulosService) {
-    this.valor = true;
-  }
+  constructor(private articulosService: ArticulosService) { }
 
   ngOnInit(): void {
     this.articulos = this.articulosService.getArticulos();
-  }
-
-  mostrarOcultar() {
-    this.valor = !this.valor;
   }
 
 }

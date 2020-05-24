@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Articulo } from '../clases/articulo';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
@@ -16,8 +16,11 @@ export class ArticulosService {
     this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
   }
 
-  getArticulos(): Observable<Articulo[]> {
-    return this.http.get(`${this.url}/articulos`).pipe(
+  getArticulos(pagina: number): Observable<Articulo[]> {
+    let parametros = new HttpParams();
+    parametros = parametros.append('Pagina', pagina.toString());
+
+    return this.http.get(`${this.url}/articulos`, {params: parametros}).pipe(
       map((resp: any) => {
         return resp.Lista as Articulo[];
       })

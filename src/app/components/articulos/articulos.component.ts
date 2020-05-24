@@ -10,6 +10,7 @@ import { ArticulosService } from 'src/app/services/articulos.service';
 export class ArticulosComponent implements OnInit {
 
   articulos: Articulo[];
+  pagina: number = 1;
 
   constructor(private articulosService: ArticulosService) { }
 
@@ -18,7 +19,7 @@ export class ArticulosComponent implements OnInit {
   }
 
   getArticulos() {
-    this.articulosService.getArticulos().subscribe(articulos => this.articulos = articulos);
+    this.articulosService.getArticulos(this.pagina).subscribe(articulos => this.articulos = articulos);
   }
 
 }

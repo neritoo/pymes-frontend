@@ -1,5 +1,7 @@
 # PymesApp
 
+Aplicación para el manejo de articulos de una Pymes.
+
 ## Descripción
 
 Aplicación con fines de aprendizaje que tiene como objetivo el manejo de artículos de una pequeña pymes. Será implementada con el framework de JavaScript 'Angular'.

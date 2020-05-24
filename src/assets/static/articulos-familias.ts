@@ -1,6 +1,7 @@
 import { ArticuloFamilia } from 'src/app/clases/articulo-familia';
 
 export const ARTICULOS_FAMILIAS: ArticuloFamilia[] = [
+    /*
     {
         id: 1,
         nombre: 'Accesorios'
@@ -40,5 +41,5 @@ export const ARTICULOS_FAMILIAS: ArticuloFamilia[] = [
     {
         id: 10,
         nombre: 'LED - LCD'
-    }
+    }*/
 ]

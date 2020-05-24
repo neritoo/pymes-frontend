@@ -19,12 +19,14 @@ export class ArticulosFamiliasService {
   getArticulosFamilias(): Observable<ArticuloFamilia[]> {
 
     // Retornar la respuesta HTTP GET, haciendo previamente el casteo a nuestro array ArticuloFamilia[].
-    // return this.http.get<ArticuloFamilia[]>(`${this.url}/articulosFamilias`);
+    return this.http.get<ArticuloFamilia[]>(`${this.url}/articulosFamilias`);
 
     // Retornar la respuesta HTTP GET, haciendo pasar la respuesta por el operador map, creando un
     // array auxiliar donde insertaremos tantos objetos ArticuloFamilia vacios como tenga la respuesta
     // para luego asignarles el id y nombre que vienen de la respuesta HTTP evitando que haya problemas
     // con las propieades creadas y declaradas en nuestra Clase ArticuloFamilia.
+    
+    /*
     return this.http.get(`${this.url}/articulosFamilias`).pipe(
       map( (resp: any) => {
         const articulosFamilias: ArticuloFamilia[] = [];
@@ -38,6 +40,7 @@ export class ArticulosFamiliasService {
         return articulosFamilias;
         // return resp as ArticuloFamilia[];
     }));
+    */
   }
 
 }

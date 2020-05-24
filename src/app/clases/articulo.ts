@@ -1,6 +1,13 @@
+import { ArticuloFamilia } from './articulo-familia';
+
 export class Articulo {
-    id: number;
-    nombre: string;
-    descripcion: string;
-    precio: number;
+    IdArticulo: number;
+    Nombre: string;
+    Precio: number;
+    CodigoDeBarra: string;
+    IdArticuloFamilia: number;
+    ArticulosFamilia: ArticuloFamilia;
+    Stock: number;
+    FechaAlta: string;
+    Activo: boolean;
 }

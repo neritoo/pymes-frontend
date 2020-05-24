@@ -14,7 +14,11 @@ export class ArticulosComponent implements OnInit {
   constructor(private articulosService: ArticulosService) { }
 
   ngOnInit(): void {
-    this.articulos = this.articulosService.getArticulos();
+    this.getArticulos();
+  }
+
+  getArticulos() {
+    this.articulosService.getArticulos().subscribe(articulos => this.articulos = articulos);
   }
 
 }

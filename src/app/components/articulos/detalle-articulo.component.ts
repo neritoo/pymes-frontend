@@ -17,9 +17,12 @@ export class DetalleArticuloComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
-      this.articulo = this.articuloService.getArticulo(params['id']);
+      this.articuloService.getArticulo(params['id']).subscribe(articulo => {
+        this.articulo = articulo;
+        console.log(this.articulo);
+      });
     });
-    console.log(this.articulo);
   }
+
 
 }

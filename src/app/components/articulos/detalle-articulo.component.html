@@ -1,15 +1,15 @@
-<div class="container my-5" style="width: 50%;">
+<div class="container my-5" style="width: 50%;" *ngIf="articulo">
     <a class="btn btn-outline-info mb-1" [routerLink]="['/articulos']">Volver</a>
     <div class="card text-center border-info">
         <div class="card-header">
             Articulo
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{articulo.nombre}}</h5>
-            <p class="card-text">{{articulo.descripcion}}</p>
+            <h5 class="card-title">{{articulo.Nombre}}</h5>
+            <p class="card-text">{{articulo.ArticulosFamilia.Nombre}}</p>
         </div>
         <div class="card-footer text-success">
-            <h5>{{articulo.precio | currency}}</h5>
+            <h5>{{articulo.Precio | currency}}</h5>
         </div>
     </div>
 </div>

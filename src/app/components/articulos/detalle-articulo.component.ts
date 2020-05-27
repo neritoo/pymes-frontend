@@ -19,7 +19,6 @@ export class DetalleArticuloComponent implements OnInit {
     this.activatedRoute.params.subscribe( params => {
       this.articuloService.getArticulo(params['id']).subscribe(articulo => {
         this.articulo = articulo;
-        console.log(this.articulo);
       });
     });
   }

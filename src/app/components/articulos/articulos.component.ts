@@ -12,10 +12,13 @@ export class ArticulosComponent implements OnInit {
   articulos: Articulo[];
   pagina: number = 1;
 
-  constructor(private articulosService: ArticulosService) { }
+  constructor(private articulosService: ArticulosService) {
+    this.articulos = [];
+  }
 
   ngOnInit(): void {
     this.getArticulos();
+    
   }
 
   getArticulos() {

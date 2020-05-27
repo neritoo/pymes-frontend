@@ -4,7 +4,6 @@ import { Articulo } from '../clases/articulo';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +29,5 @@ export class ArticulosService {
   getArticulo(IdArticulo: number): Observable<Articulo> {
     return this.http.get<Articulo>(`${this.url}/articulos/${IdArticulo}`);
   }
-
 
 }

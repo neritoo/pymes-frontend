@@ -1,4 +1,5 @@
 <div class="container my-3">
+    <!--
     <div class="my-3">
         <form class="bg-light">
             <div class="form-group row">
@@ -23,13 +24,16 @@
             </div>
         </form>
     </div>
+    -->
 
     <div class="my-5">
-        <table class="table">
+        <button type="button" class="btn btn-outline-success">Agregar+</button>
+        <table class="table mt-2">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Familia</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -38,10 +42,11 @@
                 <tr *ngFor="let articulo of articulos">
                     <th scope="row">{{articulo.IdArticulo}}</th>
                     <td>{{articulo.Nombre}}</td>
+                    <td>{{articulo.ArticulosFamilia.Nombre}}</td>
                     <td>{{articulo.Precio | currency}}</td>
                     <td>
                         <a class="btn btn-sm btn-outline-info" type="button" [routerLink]="['/articulo', articulo.IdArticulo]">Ver</a>
-                        <button class="btn btn-sm btn-outline-success mx-2" type="button">Guardar</button>
+                        <button class="btn btn-sm btn-outline-primary mx-2" type="button">Editar</button>
                         <button class="btn btn-sm btn-outline-danger" type="button">Borrar</button>
                     </td>
                 </tr>

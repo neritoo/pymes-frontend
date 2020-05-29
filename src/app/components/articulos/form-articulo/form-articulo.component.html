@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="col-sm-2 mt-2">
+        <a class="btn btn-outline-primary" [routerLink]="['/articulos']">Volver</a>
+    </div>
+
+    <div class="m-3 card bg-dark text-white">
+        <div class="card-header" text-primary>Nuevo Artículo</div>
+        <div class="card-body">
+
+            <form [formGroup]='form' (ngSubmit)="guardar()">
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Nombre</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" formControlName="Nombre">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Precio</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="precio" placeholder="Precio" formControlName="Precio">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Codigo de barra</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="codigoBarra" placeholder="Codigo de barra" formControlName="CodigoDeBarra">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Familia</label>
+                    <div class="col-sm-6">
+                        <select type="text" class="form-control" name="familia" formControlName="Familia">
+                            <option *ngFor="let familia of familias" [ngValue]="familia">
+                                {{familia.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Stock</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="stock" placeholder="Stock" formControlName="Stock">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Fecha alta</label>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" name="nombre" formControlName="FechaAlta">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Activo</label>
+                    <div class="col-sm-6">
+                        <select disabled type="text" class="form-control" name="activo" formControlName="Activo">
+                            <option *ngFor="let opcion of opcionesActivo" [ngValue]="opcion.id">
+                                {{opcion.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-success">Crear</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

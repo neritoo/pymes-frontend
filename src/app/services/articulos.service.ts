@@ -30,4 +30,8 @@ export class ArticulosService {
     return this.http.get<Articulo>(`${this.url}/articulos/${IdArticulo}`);
   }
 
+  crearArticulo(articulo: Articulo) {
+    return console.log(`Articulo ${articulo.Nombre} creado con éxito!`);
+  }
+
 }

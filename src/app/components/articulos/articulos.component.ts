@@ -17,8 +17,7 @@ export class ArticulosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getArticulos();
-    
+    this.getArticulos();    
   }
 
   getArticulos() {

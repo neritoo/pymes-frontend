@@ -31,7 +31,7 @@ export class ArticulosService {
   }
 
   crearArticulo(articulo: Articulo) {
-    return console.log(`Articulo ${articulo.Nombre} creado con éxito!`);
+    console.log(`Articulo ${articulo.Nombre} creado con éxito!`);
   }
 
 }

@@ -21,28 +21,17 @@ export class FormArticuloComponent implements OnInit {
     { id: false, nombre: "No"}
   ];
 
-  constructor(private fb: FormBuilder, private articuloService: ArticulosService, private familiaService: ArticulosFamiliasService) {
-    this.articulo = {
-      IdArticulo: 15464,
-      Nombre: 'Papaya',
-      Precio: 25,
-      IdArticuloFamilia: 1,
-      ArticulosFamilia: {
-        IdArticuloFamilia: 1,
-        Nombre: 'Informatica'
-      },
-      CodigoDeBarra: '54654654',
-      Stock: 30,
-      FechaAlta: '',
-      Activo: true
-    };
+  constructor(private fb: FormBuilder,
+    private articuloService: ArticulosService,
+    private familiaService: ArticulosFamiliasService) {
+
   }
   
   ngOnInit(): void {
+    
     this.getFamilias();
     this.crearFormulario();
     this.cargarFormulario();
-    console.log(this.articulo);
   }
 
   getFamilias() {
@@ -54,7 +43,7 @@ export class FormArticuloComponent implements OnInit {
       Nombre: [''],
       Precio: [''],
       CodigoDeBarra: [''],
-      Familia: [{IdArticuloFamilia: 1}],
+      Familia: [],
       Stock: [''],
       FechaAlta: [''],
       Activo: [true]
@@ -63,6 +52,7 @@ export class FormArticuloComponent implements OnInit {
 
   guardar() {
     this.articulo = new Articulo();
+
     this.articulo.Nombre = this.form.value.Nombre;
     this.articulo.Precio = this.form.value.Precio;
     this.articulo.CodigoDeBarra = this.form.value.CodigoDeBarra;
@@ -73,13 +63,15 @@ export class FormArticuloComponent implements OnInit {
     this.articulo.Activo = this.form.value.Activo;
 
     this.articuloService.crearArticulo(this.articulo);
+
     console.log(this.articulo);
+
     this.form.reset({Activo: true});
     
   }
 
   cargarFormulario() {
-    this.form.reset(this.articulo);
+    //this.form.reset();
   }
 
   getArticulo() {

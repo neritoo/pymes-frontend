@@ -90,6 +90,10 @@ export class FormArticuloComponent implements OnInit {
     });
   }
 
+  update() {
+    
+  }
+
   comparar(familia: ArticuloFamilia, familiaArticulo: ArticuloFamilia): boolean {
     if (familia == undefined && familiaArticulo == undefined) {
       return true;

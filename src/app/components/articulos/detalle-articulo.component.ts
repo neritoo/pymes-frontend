@@ -16,10 +16,14 @@ export class DetalleArticuloComponent implements OnInit {
               private articuloService: ArticulosService) { }
 
   ngOnInit(): void {
+    this.cargarArticulo();
+    console.log(this.articulo);
+  }
+
+  cargarArticulo() {
     this.activatedRoute.params.subscribe( params => {
-      this.articuloService.getArticulo(params['id']).subscribe(articulo => {
-        this.articulo = articulo;
-      });
+      let idArticulo = params['id'];
+      this.articuloService.getArticulo(idArticulo).subscribe(articulo => this.articulo = articulo);
     });
   }
 

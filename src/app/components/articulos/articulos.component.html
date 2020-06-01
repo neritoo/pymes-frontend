@@ -50,8 +50,10 @@
                     <td>{{articulo.Activo? 'Si' : 'No'}}</td>
                     <td>
                         <a class="btn btn-sm btn-outline-info" type="button" [routerLink]="['/articulo', articulo.IdArticulo]">Ver</a>
-                        <button class="btn btn-sm btn-outline-primary mx-1" type="button">Editar</button>
-                        <button class="btn btn-sm btn-outline-danger" type="button">Borrar</button>
+                        <a class="btn btn-sm btn-outline-primary mx-1" type="button" [routerLink]="['/articulos/form', articulo.IdArticulo]">Editar</a>
+                        <button *ngIf="articulo.Activo" class="btn btn-sm btn-outline-danger" type="button">Desactivar</button>
+                        <button *ngIf="!articulo.Activo" class="btn btn-sm btn-outline-success">Activar</button>
+
                     </td>
                 </tr>
             </tbody>

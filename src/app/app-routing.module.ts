@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'articulos', component: ArticulosComponent },
   { path: 'articulo/:id', component: DetalleArticuloComponent },
   { path: 'articulos/form', component: FormArticuloComponent },
+  { path: 'articulos/form/:id', component: FormArticuloComponent},
   { path: 'articulos-familias', component: ArticulosFamiliasComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}
 

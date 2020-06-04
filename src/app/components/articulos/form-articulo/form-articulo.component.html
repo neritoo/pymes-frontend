@@ -4,10 +4,18 @@
     </div>
 
     <div class="m-3 card bg-dark text-white" *ngIf="articulo">
-        <div class="card-header" text-primary>Nuevo Artículo</div>
+        <div class="card-header" text-primary>Articulo</div>
         <div class="card-body">
 
             <form autocomplete="off" [formGroup]='form' (ngSubmit)="guardar()">
+
+                <div class="form-group row" *ngIf="false">
+                    <label class="col-form-label col-sm-2">Id</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="nombre" placeholder="Id" formControlName="IdArticulo">
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Nombre</label>
                     <div class="col-sm-6">
@@ -32,7 +40,8 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Familia</label>
                     <div class="col-sm-6">
-                        <select [compareWith]="comparar" type="text" class="form-control" name="familia" formControlName="ArticulosFamilia">
+                        <select [compareWith]="comparar" type="text" class="form-control" name="familias" formControlName="ArticulosFamilia">
+                            <!-- <option selected [ngValue]="null">Seleccionar familia</option>                             -->
                             <option *ngFor="let familia of familias" [ngValue]="familia">
                                 {{familia.Nombre}}
                             </option>
@@ -57,7 +66,7 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Activo</label>
                     <div class="col-sm-6">
-                        <select type="text" class="form-control" name="activo" formControlName="Activo">
+                        <select disabled type="text" class="form-control" name="activo" formControlName="Activo">
                             <option *ngFor="let opcion of opcionesActivo" [ngValue]="opcion.id">
                                 {{opcion.nombre}}
                             </option>
@@ -68,7 +77,7 @@
                 <div class="col-sm-2">
                     <button *ngIf="!articulo.IdArticulo else elseBlock" type="submit" class="btn btn-success">Crear</button>
                     <ng-template #elseBlock>
-                        <button class="btn btn-primary" type="button" (click)="update()">Editar</button>
+                        <button class="btn btn-primary" type="submit" (click)="update()">Editar</button>
                     </ng-template>
                 </div>
 

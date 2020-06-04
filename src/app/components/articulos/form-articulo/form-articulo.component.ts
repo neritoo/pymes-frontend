@@ -4,8 +4,7 @@ import { Articulo } from 'src/app/clases/articulo';
 import { ArticuloFamilia } from 'src/app/clases/articulo-familia';
 import { ArticulosService } from 'src/app/services/articulos.service';
 import { ArticulosFamiliasService } from 'src/app/services/articulos-familias.service';
-import { ActivatedRoute } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-articulo',
@@ -26,7 +25,8 @@ export class FormArticuloComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private articuloService: ArticulosService,
     private familiaService: ArticulosFamiliasService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
       this.articulo = new Articulo();
   }
   
@@ -42,38 +42,18 @@ export class FormArticuloComponent implements OnInit {
   
   crearFormulario() {
     this.form = this.fb.group({
-      Nombre: [''],
-      Precio: [''],
-      CodigoDeBarra: [''],
+      IdArticulo: [null],
+      Nombre: [null],
+      Precio: [null],
+      CodigoDeBarra: [null],
       ArticulosFamilia: [null],
-      Stock: [''],
-      FechaAlta: [''],
+      Stock: [null],
+      FechaAlta: [null],
       Activo: [true]
     });
-
-  }
-
-  guardar() {
-    this.articulo = new Articulo();
-
-    this.articulo.Nombre = this.form.value.Nombre;
-    this.articulo.Precio = this.form.value.Precio;
-    this.articulo.CodigoDeBarra = this.form.value.CodigoDeBarra;
-    // Explicar que cambiamos.
-    this.articulo.ArticulosFamilia = this.form.value.ArticulosFamilia;
-    this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
-    this.articulo.Stock = this.form.value.Stock;
-    this.articulo.FechaAlta = this.form.value.FechaAlta;
-    this.articulo.Activo = this.form.value.Activo;
-
-    console.log(this.articulo);
-
-    this.articuloService.crearArticulo(this.articulo);
-
-    this.form.reset({Activo: true});
     
   }
-
+  
   cargarFormulario() {
     this.activatedRoute.params.subscribe( params => {
       let id = params['id'];
@@ -81,7 +61,6 @@ export class FormArticuloComponent implements OnInit {
         this.articuloService.getArticulo(id).subscribe((articulo: any) => {
           this.articulo = articulo;
           this.form.reset(this.articulo);
-          //console.log(this.articulo);
           console.log(this.form.value.ArticulosFamilia.IdArticuloFamilia);
         });
       } else {
@@ -90,16 +69,43 @@ export class FormArticuloComponent implements OnInit {
     });
   }
 
-  update() {
+  guardar() {
+
+    this.articulo = this.form.value;
+    this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
+
+    this.articuloService.crearArticulo(this.articulo);
+    
+    console.log(this.articulo);
+    
+    this.router.navigate(['/articulos']);
+
+    alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
     
   }
 
+
+  update() {
+
+    this.articulo = this.form.value;
+    this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
+
+    this.articuloService.actualizarArticulo(this.articulo);
+
+    console.log(this.articulo);
+
+    this.router.navigateByUrl(`/articulo/${this.articulo.IdArticulo}`);
+
+    alert(`Articulo ${this.articulo.Nombre} actualizado!`);
+
+  }
+
   comparar(familia: ArticuloFamilia, familiaArticulo: ArticuloFamilia): boolean {
-    if (familia == undefined && familiaArticulo == undefined) {
+    if (familia === undefined && familiaArticulo === undefined) {
       return true;
     }
 
-    return familia == null || familiaArticulo == null? false: familia.IdArticuloFamilia === familiaArticulo.IdArticuloFamilia;
+    return familia === null || familiaArticulo === null? false: familia.IdArticuloFamilia === familiaArticulo.IdArticuloFamilia;
   }
 
 }

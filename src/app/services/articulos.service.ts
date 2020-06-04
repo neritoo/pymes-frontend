@@ -34,4 +34,8 @@ export class ArticulosService {
     console.log(`Articulo ${articulo.Nombre} creado con éxito!`);
   }
 
+  actualizarArticulo(articulo: Articulo) {
+    console.log(`Articulo ${articulo.Nombre} editado con éxito!`);
+  }
+
 }

@@ -117,6 +117,16 @@ export class FormArticuloComponent implements OnInit {
 
   }
 
+  waitAlert() {
+    Swal.fire({
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      icon: 'info',
+      text: 'Espere porfavor',
+      timer: 3000
+    })
+  }
+
   comparar(familia: ArticuloFamilia, familiaArticulo: ArticuloFamilia): boolean {
     if (familia === undefined && familiaArticulo === undefined) {
       return true;

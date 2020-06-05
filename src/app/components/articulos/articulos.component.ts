@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from "sweetalert2";
+
 import { Articulo } from 'src/app/clases/articulo';
 import { ArticulosService } from 'src/app/services/articulos.service';
 
@@ -22,6 +24,23 @@ export class ArticulosComponent implements OnInit {
 
   getArticulos() {
     this.articulosService.getArticulos(this.pagina).subscribe(articulos => this.articulos = articulos);
+  }
+
+  cambiarEstadoArticulo(articulo: Articulo) {
+    Swal.fire({
+      icon: 'warning',
+      title: `Che toga denserio queres ${articulo.Activo? 'desactivar' : 'activar'}`,
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Pues si mi ciela'
+    }).then((resp) => {
+      if (resp.value) {
+        articulo.Activo = !articulo.Activo;
+      } else {
+        return;
+      }
+    });
+  
   }
 
 }

@@ -42,17 +42,17 @@
             </thead>
             <tbody>
                 <tr *ngFor="let articulo of articulos">
-                    <th scope="row">{{articulo.IdArticulo}}</th>
-                    <td>{{articulo.Nombre}}</td>
-                    <td>{{articulo.Precio | currency}}</td>
-                    <td>{{articulo.ArticulosFamilia.Nombre}}</td>
-                    <td>{{articulo.Stock}}</td>
-                    <td>{{articulo.Activo? 'Si' : 'No'}}</td>
+                    <th scope="row">{{articulo.id}}</th>
+                    <td>{{articulo.nombre}}</td>
+                    <td>{{articulo.precio | currency}}</td>
+                    <td>{{articulo.articulosFamilia.nombre}}</td>
+                    <td>{{articulo.stock}}</td>
+                    <td>{{articulo.activo? 'Si' : 'No'}}</td>
                     <td>
-                        <a class="btn btn-sm btn-outline-info" type="button" [routerLink]="['/articulo', articulo.IdArticulo]">Ver</a>
-                        <a class="btn btn-sm btn-outline-primary mx-1" type="button" [routerLink]="['/articulos/form', articulo.IdArticulo]">Editar</a>
-                        <button *ngIf="articulo.Activo" class="btn btn-sm btn-outline-danger" (click)="cambiarEstadoArticulo(articulo)" type="button">Desactivar</button>
-                        <button *ngIf="!articulo.Activo" class="btn btn-sm btn-outline-success" (click)="cambiarEstadoArticulo(articulo)">Activar</button>
+                        <a class="btn btn-sm btn-outline-info" type="button" [routerLink]="['/articulo', articulo.id]">Ver</a>
+                        <a class="btn btn-sm btn-outline-primary mx-1" type="button" [routerLink]="['/articulos/form', articulo.id]">Editar</a>
+                        <button *ngIf="articulo.activo" class="btn btn-sm btn-outline-danger" (click)="cambiarEstadoArticulo(articulo)" type="button">Desactivar</button>
+                        <button *ngIf="!articulo.activo" class="btn btn-sm btn-outline-success" (click)="cambiarEstadoArticulo(articulo)">Activar</button>
 
                     </td>
                 </tr>

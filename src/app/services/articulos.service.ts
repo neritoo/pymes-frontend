@@ -12,12 +12,16 @@ export class ArticulosService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
+    // Servidor facu
+    //this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
+
+    // Local host
+    this.url = 'http://localhost:8080/api';
   }
 
   getArticulos(pagina: number): Observable<Articulo[]> {
     let parametros = new HttpParams();
-    parametros = parametros.append('Pagina', pagina.toString());
+    //parametros = parametros.append('Pagina', pagina.toString());
 
     return this.http.get(`${this.url}/articulos`, {params: parametros}).pipe(
       map((resp: any) => {
@@ -31,11 +35,15 @@ export class ArticulosService {
   }
 
   crearArticulo(articulo: Articulo) {
-    console.log(`Articulo ${articulo.Nombre} creado con éxito!`);
+    console.log(`Articulo ${articulo.nombre} creado con éxito!`);
   }
 
   actualizarArticulo(articulo: Articulo) {
-    console.log(`Articulo ${articulo.Nombre} editado con éxito!`);
+    console.log(`Articulo ${articulo.nombre} editado con éxito!`);
+  }
+
+  cambiarEstadoArticulo(articulo: Articulo) {
+    return this.http.put<Articulo>(`${this.url}/articulos/estado/${articulo.id}`, articulo);
   }
 
 }

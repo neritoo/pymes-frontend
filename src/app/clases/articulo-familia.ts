@@ -1,4 +1,4 @@
 export class ArticuloFamilia {
-    IdArticuloFamilia: number;
-    Nombre: string;
+    id: number;
+    nombre: string;
 }

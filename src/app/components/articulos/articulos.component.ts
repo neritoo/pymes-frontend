@@ -29,13 +29,16 @@ export class ArticulosComponent implements OnInit {
   cambiarEstadoArticulo(articulo: Articulo) {
     Swal.fire({
       icon: 'warning',
-      title: `Che toga denserio queres ${articulo.Activo? 'desactivar' : 'activar'}`,
+      title: `Che toga denserio queres ${articulo.activo? 'desactivar' : 'activar'}`,
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Pues si mi ciela'
     }).then((resp) => {
       if (resp.value) {
-        articulo.Activo = !articulo.Activo;
+        this.articulosService.cambiarEstadoArticulo(articulo).subscribe(res => {
+          this.getArticulos();
+          // articulo.activo = !articulo.activo;
+        });
       } else {
         return;
       }

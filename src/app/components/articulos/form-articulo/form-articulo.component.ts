@@ -44,14 +44,14 @@ export class FormArticuloComponent implements OnInit {
   
   crearFormulario() {
     this.form = this.fb.group({
-      IdArticulo: [null],
-      Nombre: [null],
-      Precio: [null],
-      CodigoDeBarra: [null],
-      ArticulosFamilia: [null],
-      Stock: [null],
-      FechaAlta: [null],
-      Activo: [true]
+      id: [null],
+      nombre: [null],
+      precio: [null],
+      codigoBarra: [null],
+      articulosFamilia: [null],
+      stock: [null],
+      fechaAlta: [null],
+      activo: [true]
     });
     
   }
@@ -63,7 +63,7 @@ export class FormArticuloComponent implements OnInit {
         this.articuloService.getArticulo(id).subscribe((articulo: any) => {
           this.articulo = articulo;
           this.form.reset(this.articulo);
-          console.log(this.form.value.ArticulosFamilia.IdArticuloFamilia);
+          console.log(this.form.value.articulosFamilia.id);
         });
       } else {
         return;
@@ -74,7 +74,7 @@ export class FormArticuloComponent implements OnInit {
   guardar() {
 
     this.articulo = this.form.value;
-    this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
+    //this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
     this.articuloService.crearArticulo(this.articulo);
 
@@ -86,7 +86,7 @@ export class FormArticuloComponent implements OnInit {
       Swal.fire({
         icon: 'success',
         title: 'Articulo creado',
-        text: `Articulo ${this.articulo.Nombre} creado con éxito!`,
+        text: `Articulo ${this.articulo.nombre} creado con éxito!`,
         timer: 3000
       });
 
@@ -98,18 +98,18 @@ export class FormArticuloComponent implements OnInit {
   update() {
 
     this.articulo = this.form.value;
-    this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
+    //this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
     this.articuloService.actualizarArticulo(this.articulo);
 
     console.log(this.articulo);
 
-    this.router.navigateByUrl(`/articulo/${this.articulo.IdArticulo}`);
+    this.router.navigateByUrl(`/articulo/${this.articulo.id}`);
 
     Swal.fire({
       icon: 'success',
       title: 'Articulo actualizado',
-      text: `Articulo ${this.articulo.Nombre} actualizado con éxito!`,
+      text: `Articulo ${this.articulo.nombre} actualizado con éxito!`,
       timer: 3000
     });
 
@@ -132,7 +132,7 @@ export class FormArticuloComponent implements OnInit {
       return true;
     }
 
-    return familia === null || familiaArticulo === null? false: familia.IdArticuloFamilia === familiaArticulo.IdArticuloFamilia;
+    return familia === null || familiaArticulo === null? false: familia.id === familiaArticulo.id;
   }
 
 }

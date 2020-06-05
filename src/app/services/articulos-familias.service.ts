@@ -12,14 +12,20 @@ export class ArticulosFamiliasService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
+
+    // Servidor facu
+    //this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
+
+    // Localhost
+    this.url = 'http://localhost:8080/api';
   }
 
   // retorno: observable del array ArticuloFamilia[] proveniente del servidor
   getArticulosFamilias(): Observable<ArticuloFamilia[]> {
 
     // Retornar la respuesta HTTP GET, haciendo previamente el casteo a nuestro array ArticuloFamilia[].
-    return this.http.get<ArticuloFamilia[]>(`${this.url}/articulosFamilias`);
+    //return this.http.get<ArticuloFamilia[]>(`${this.url}/articulosFamilias`);
+    return this.http.get<ArticuloFamilia[]>(`${this.url}/articulos-familia`);
 
     // Retornar la respuesta HTTP GET, haciendo pasar la respuesta por el operador map, creando un
     // array auxiliar donde insertaremos tantos objetos ArticuloFamilia vacios como tenga la respuesta

@@ -19,31 +19,31 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Nombre</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" formControlName="Nombre">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" formControlName="nombre">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Precio</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="precio" placeholder="Precio" formControlName="Precio">
+                        <input type="text" class="form-control" name="precio" placeholder="Precio" formControlName="precio">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Codigo de barra</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="codigoBarra" placeholder="Codigo de barra" formControlName="CodigoDeBarra">
+                        <input type="text" class="form-control" name="codigoBarra" placeholder="Codigo de barra" formControlName="codigoBarra">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Familia</label>
                     <div class="col-sm-6">
-                        <select [compareWith]="comparar" type="text" class="form-control" name="familias" formControlName="ArticulosFamilia">
+                        <select [compareWith]="comparar" type="text" class="form-control" name="familias" formControlName="articulosFamilia">
                             <!-- <option selected [ngValue]="null">Seleccionar familia</option>                             -->
                             <option *ngFor="let familia of familias" [ngValue]="familia">
-                                {{familia.Nombre}}
+                                {{familia.nombre}}
                             </option>
                         </select>
                     </div>
@@ -52,21 +52,21 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Stock</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="stock" placeholder="Stock" formControlName="Stock">
+                        <input type="text" class="form-control" name="stock" placeholder="Stock" formControlName="stock">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Fecha alta</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="nombre" formControlName="FechaAlta">
+                        <input type="text" class="form-control" name="nombre" formControlName="fechaAlta">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Activo</label>
                     <div class="col-sm-6">
-                        <select disabled type="text" class="form-control" name="activo" formControlName="Activo">
+                        <select disabled type="text" class="form-control" name="activo" formControlName="activo">
                             <option *ngFor="let opcion of opcionesActivo" [ngValue]="opcion.id">
                                 {{opcion.nombre}}
                             </option>
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="col-sm-2">
-                    <button *ngIf="!articulo.IdArticulo else elseBlock" type="submit" class="btn btn-success">Crear</button>
+                    <button *ngIf="!articulo.id else elseBlock" type="submit" class="btn btn-success">Crear</button>
                     <ng-template #elseBlock>
                         <button class="btn btn-primary" type="submit" (click)="update()">Editar</button>
                     </ng-template>

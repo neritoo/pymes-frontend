@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from "sweetalert2";
+
 import { Articulo } from 'src/app/clases/articulo';
 import { ArticuloFamilia } from 'src/app/clases/articulo-familia';
 import { ArticulosService } from 'src/app/services/articulos.service';
 import { ArticulosFamiliasService } from 'src/app/services/articulos-familias.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-articulo',
@@ -75,12 +77,20 @@ export class FormArticuloComponent implements OnInit {
     this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
     this.articuloService.crearArticulo(this.articulo);
+
     
     console.log(this.articulo);
     
     this.router.navigate(['/articulos']);
 
-    alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
+      Swal.fire({
+        icon: 'success',
+        title: 'Articulo creado',
+        text: `Articulo ${this.articulo.Nombre} creado con éxito!`,
+        timer: 3000
+      });
+
+    //alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
     
   }
 
@@ -96,7 +106,14 @@ export class FormArticuloComponent implements OnInit {
 
     this.router.navigateByUrl(`/articulo/${this.articulo.IdArticulo}`);
 
-    alert(`Articulo ${this.articulo.Nombre} actualizado!`);
+    Swal.fire({
+      icon: 'success',
+      title: 'Articulo actualizado',
+      text: `Articulo ${this.articulo.Nombre} actualizado con éxito!`,
+      timer: 3000
+    });
+
+    //alert(`Articulo ${this.articulo.Nombre} actualizado!`);
 
   }
 

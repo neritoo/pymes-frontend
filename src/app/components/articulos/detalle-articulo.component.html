@@ -7,6 +7,8 @@
         <div class="card-body">
             <h5 class="card-title">{{articulo.Nombre}}</h5>
             <p class="card-text">{{articulo.ArticulosFamilia.Nombre}}</p>
+            <p class="card-text">{{articulo.FechaAlta | date}}</p>
+            <p class="card-text">{{articulo.Activo? 'Activo' : 'No activo'}}</p>
         </div>
         <div class="card-footer text-success">
             <h5>{{articulo.Precio | currency}}</h5>

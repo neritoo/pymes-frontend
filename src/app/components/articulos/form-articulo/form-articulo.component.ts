@@ -38,6 +38,27 @@ export class FormArticuloComponent implements OnInit {
     this.cargarFormulario();
   }
 
+  get nombreNoValido() {
+    return this.form.get('Nombre').invalid && this.form.get('Nombre').touched;
+  }
+
+  get precioNoValido() {
+    return this.form.get('Precio').invalid && this.form.get('Precio').touched;
+  }
+
+  get codigoBarraNoValido() {
+    return this.form.get('CodigoDeBarra').invalid && this.form.get('CodigoDeBarra').touched;
+  }
+
+  get familiaNoValido() {
+    return this.form.get('ArticulosFamilia').invalid && this.form.get('ArticulosFamilia').touched;
+  }
+
+  get stockNoValido() {
+    return this.form.get('Stock').invalid && this.form.get('Stock').touched;
+  }
+
+
   getFamilias() {
     this.familiaService.getArticulosFamilias().subscribe(familias => this.familias = familias)
   }
@@ -45,11 +66,11 @@ export class FormArticuloComponent implements OnInit {
   crearFormulario() {
     this.form = this.fb.group({
       IdArticulo: [null],
-      Nombre: [null],
-      Precio: [null],
-      CodigoDeBarra: [null],
-      ArticulosFamilia: [null],
-      Stock: [null],
+      Nombre: [null, [Validators.required, Validators.minLength(4)]],
+      Precio: [null, [Validators.required]],
+      CodigoDeBarra: [null, [Validators.required]],
+      ArticulosFamilia: [null, [Validators.required]],
+      Stock: [null, [Validators.required]],
       FechaAlta: [null],
       Activo: [true]
     });
@@ -73,24 +94,30 @@ export class FormArticuloComponent implements OnInit {
 
   guardar() {
 
-    this.articulo = this.form.value;
-    this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
+    this.articulo = this.form.value
+    
+    if (this.form.invalid) {
+      return Object.values(this.form.controls).forEach(ctrl => {
+        ctrl.markAsTouched();
+      });
+    } else {
+      this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
+    }
 
     this.articuloService.crearArticulo(this.articulo);
-
     
-    console.log(this.articulo);
+    console.log(this.form);
     
     this.router.navigate(['/articulos']);
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Articulo creado',
-        text: `Articulo ${this.articulo.Nombre} creado con éxito!`,
-        timer: 3000
-      });
+    Swal.fire({
+      icon: 'success',
+      title: 'Articulo creado',
+      text: `Articulo ${this.articulo.Nombre} creado con éxito!`,
+      timer: 3000
+    });
 
-    //alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
+    // alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
     
   }
 

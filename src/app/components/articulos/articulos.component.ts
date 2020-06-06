@@ -29,11 +29,12 @@ export class ArticulosComponent implements OnInit {
   cambiarEstadoArticulo(articulo: Articulo) {
     Swal.fire({
       icon: 'warning',
-      title: `Confirmar ${articulo.Activo? 'desactivado' : 'activado'} de articulo`,
+      text: `${articulo.Activo? 'Desactivar' : 'Activar'} articulo`,
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Confirmar'
-    }).then((resp) => {
+    })
+    .then((resp) => {
       if (resp.value) {
         articulo.Activo = !articulo.Activo;
       } else {

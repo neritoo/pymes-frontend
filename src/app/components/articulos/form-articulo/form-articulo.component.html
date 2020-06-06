@@ -9,50 +9,48 @@
 
             <form autocomplete="off" [formGroup]='form' (ngSubmit)="guardar()">
 
-                <!-- <div class="form-group row" *ngIf="false">
-                    <label class="col-form-label col-sm-2">Id</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="nombre" placeholder="Id" formControlName="IdArticulo">
-                    </div>
-                </div> -->
-
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Nombre</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" formControlName="Nombre">
+                        <input type="text" [class.is-invalid]="nombreNoValido" class="form-control" name="nombre" placeholder="Nombre" formControlName="Nombre">
+                        <span *ngIf="nombreNoValido" class="text-danger">El nombre del articulo debe tener al menos 4 caracteres.</span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Precio</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="precio" placeholder="Precio" formControlName="Precio">
+                        <input type="text" [class.is-invalid]="precioNoValido" class="form-control" name="precio" placeholder="Precio" formControlName="Precio">
+                        <span *ngIf="precioNoValido" class="text-danger">El precio es obligatorio.</span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Codigo de barra</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="codigoBarra" placeholder="Codigo de barra" formControlName="CodigoDeBarra">
+                        <input type="text" [class.in-invalid]="codigoBarraNoValido" class="form-control" name="codigoBarra" placeholder="Codigo de barra" formControlName="CodigoDeBarra">
+                        <span *ngIf="codigoBarraNoValido" class="text-danger">El código de barra es obligatorio.</span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Familia</label>
                     <div class="col-sm-6">
-                        <select [compareWith]="comparar" type="text" class="form-control" name="familias" formControlName="ArticulosFamilia">
+                        <select [compareWith]="comparar" [class.is-invalid]="familiaNoValido" type="text" class="form-control" name="familias" formControlName="ArticulosFamilia">
                             <!-- <option selected [ngValue]="null">Seleccionar familia</option>                             -->
                             <option *ngFor="let familia of familias" [ngValue]="familia">
                                 {{familia.Nombre}}
                             </option>
                         </select>
+                        <span *ngIf="familiaNoValido" class="text-danger">El articulo familia es obligatorio.</span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Stock</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="stock" placeholder="Stock" formControlName="Stock">
+                        <input type="text" [class.is-invalid]="stockNoValido" class="form-control" name="stock" placeholder="Stock" formControlName="Stock">
+                        <span *ngIf="stockNoValido" class="text-danger">El stock es obligatorio.</span>
                     </div>
                 </div>
 

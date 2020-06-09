@@ -23,9 +23,9 @@ export class ArticulosService {
     let parametros = new HttpParams();
     //parametros = parametros.append('Pagina', pagina.toString());
 
-    return this.http.get(`${this.url}/articulos`, {params: parametros}).pipe(
+    return this.http.get(`${this.url}/articulos/page/${pagina-1}`).pipe(
       map((resp: any) => {
-        return resp.Lista as Articulo[];
+        return resp.Lista;
       })
     );
   }

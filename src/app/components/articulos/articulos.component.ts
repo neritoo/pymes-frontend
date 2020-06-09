@@ -13,6 +13,7 @@ export class ArticulosComponent implements OnInit {
 
   articulos: Articulo[];
   pagina: number = 1;
+  totalArticulos: number;
 
   constructor(private articulosService: ArticulosService) {
     this.articulos = [];
@@ -23,16 +24,20 @@ export class ArticulosComponent implements OnInit {
   }
 
   getArticulos() {
-    this.articulosService.getArticulos(this.pagina).subscribe(articulos => this.articulos = articulos);
+    this.articulosService.getArticulos(this.pagina).subscribe((resp: any) => {
+      this.articulos = resp.content as Articulo[];
+      this.totalArticulos = resp.totalElements;
+      console.log(this.totalArticulos);
+    });
   }
 
   cambiarEstadoArticulo(articulo: Articulo) {
     Swal.fire({
       icon: 'warning',
-      title: `Che toga denserio queres ${articulo.activo? 'desactivar' : 'activar'}`,
+      title: `¿${articulo.activo? 'Desactivar' : 'Activar'} artículo?`,
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Pues si mi ciela'
+      confirmButtonText: 'Confirmar'
     }).then((resp) => {
       if (resp.value) {
         this.articulosService.cambiarEstadoArticulo(articulo).subscribe(res => {

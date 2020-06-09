@@ -12,6 +12,7 @@ import { ArticulosService } from 'src/app/services/articulos.service';
 export class ArticulosComponent implements OnInit {
 
   articulos: Articulo[];
+  totalPaginas: number;
   pagina: number = 1;
 
   constructor(private articulosService: ArticulosService) {
@@ -19,12 +20,19 @@ export class ArticulosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getArticulos();    
+    this.getArticulos();
   }
 
   getArticulos() {
-    this.articulosService.getArticulos(this.pagina).subscribe(articulos => this.articulos = articulos);
+    this.articulosService.getArticulos(this.pagina).subscribe(res => {
+      this.articulos = res.Lista;
+      this.totalPaginas = res.RegistrosTotal;
+    });
   }
+
+  // getArticulos() {
+
+  // }
 
   cambiarEstadoArticulo(articulo: Articulo) {
     Swal.fire({
@@ -41,7 +49,7 @@ export class ArticulosComponent implements OnInit {
         return;
       }
     });
-  
+
   }
 
 }

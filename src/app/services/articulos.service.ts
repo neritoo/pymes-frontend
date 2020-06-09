@@ -15,13 +15,15 @@ export class ArticulosService {
     this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
   }
 
-  getArticulos(pagina: number): Observable<Articulo[]> {
+  getArticulos(pagina: number): Observable<any> {
     let parametros = new HttpParams();
-    parametros = parametros.append('Pagina', pagina.toString());
+    parametros = parametros.append("Nombre", '');
+    parametros = parametros.append("Activo", '');
+    parametros = parametros.append("Pagina", pagina.toString());
 
     return this.http.get(`${this.url}/articulos`, {params: parametros}).pipe(
       map((resp: any) => {
-        return resp.Lista as Articulo[];
+        return resp;
       })
     );
   }

@@ -31,11 +31,18 @@ export class ArticulosService {
   }
 
   getArticulo(IdArticulo: number): Observable<Articulo> {
-    return this.http.get<Articulo>(`${this.url}/articulos/${IdArticulo}`);
+    return this.http.get(`${this.url}/articulos/${IdArticulo}`).pipe(
+      map((resp: any) => {
+        return resp.articulo as Articulo;
+      })
+    )
   }
 
-  crearArticulo(articulo: Articulo) {
-    console.log(`Articulo ${articulo.nombre} creado con éxito!`);
+  crearArticulo(articulo: Articulo): Observable<Articulo> {
+    return this.http.post(`${this.url}/articulos`, articulo).pipe(
+      map((resp: any) => resp.articulo as Articulo)
+    );
+    // console.log(`Articulo ${articulo.nombre} creado con éxito!`);
   }
 
   actualizarArticulo(articulo: Articulo) {

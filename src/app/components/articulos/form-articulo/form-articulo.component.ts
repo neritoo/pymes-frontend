@@ -76,19 +76,20 @@ export class FormArticuloComponent implements OnInit {
     this.articulo = this.form.value;
     //this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
-    this.articuloService.crearArticulo(this.articulo);
+    this.articuloService.crearArticulo(this.articulo).subscribe(
+      articulo => {
+        this.router.navigate(['/articulos']);
+        Swal.fire({
+          icon: 'success',
+          title: 'Articulo creado',
+          text: `Articulo ${this.articulo.nombre} creado con éxito!`,
+          timer: 3000
+        });
 
-    
+      }
+    );
+
     console.log(this.articulo);
-    
-    this.router.navigate(['/articulos']);
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Articulo creado',
-        text: `Articulo ${this.articulo.nombre} creado con éxito!`,
-        timer: 3000
-      });
 
     //alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
     

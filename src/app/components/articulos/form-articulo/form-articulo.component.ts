@@ -99,20 +99,21 @@ export class FormArticuloComponent implements OnInit {
   update() {
 
     this.articulo = this.form.value;
-    //this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
+    // this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
-    this.articuloService.actualizarArticulo(this.articulo);
+    this.articuloService.actualizarArticulo(this.articulo).subscribe(articulo => {
+      this.router.navigate(['/articulo', this.articulo.id]);
+      Swal.fire({
+        icon: 'success',
+        title: 'Articulo actualizado',
+        text: `Articulo ${this.articulo.nombre} actualizado con éxito!`,
+        timer: 3000
+      });
+    });
 
     console.log(this.articulo);
 
     this.router.navigateByUrl(`/articulo/${this.articulo.id}`);
-
-    Swal.fire({
-      icon: 'success',
-      title: 'Articulo actualizado',
-      text: `Articulo ${this.articulo.nombre} actualizado con éxito!`,
-      timer: 3000
-    });
 
     //alert(`Articulo ${this.articulo.Nombre} actualizado!`);
 

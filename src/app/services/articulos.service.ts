@@ -18,14 +18,26 @@ export class ArticulosService {
     //this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
 
     // Local host
-    this.url = 'http://localhost:8080/api';
+
+    // this.url = 'http://localhost:8080/api'
+
+    // Heroku
+    this.url = 'https://pymes-apirest.herokuapp.com/api';
   }
 
-  getArticulos(pagina: number): Observable<Articulo[]> {
+  getArticulos(pagina: number, articulo?: string, activo?: boolean ): Observable<Articulo[]> {
     let parametros = new HttpParams();
-    //parametros = parametros.append('Pagina', pagina.toString());
-
-    return this.http.get(`${this.url}/articulos/page/${pagina-1}`).pipe(
+    if (articulo != null){
+      parametros = parametros.append('articulo', articulo);
+    } 
+    
+    if (activo != null) {
+      parametros = parametros.append('activo', activo.toString());
+    }
+  
+    console.log(parametros);
+    
+    return this.http.get(`${this.url}/articulos/page/${pagina-1}`, {params: parametros}).pipe(
       map((resp: any) => {
         return resp.Lista;
       })

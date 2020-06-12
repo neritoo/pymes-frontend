@@ -23,8 +23,12 @@ export class ArticulosComponent implements OnInit {
     this.getArticulos();    
   }
 
+  
+  
   getArticulos() {
-    this.articulosService.getArticulos(this.pagina).subscribe((resp: any) => {
+    let nombre: string = '';
+    let activo: boolean;
+    this.articulosService.getArticulos(this.pagina, nombre, activo).subscribe((resp: any) => {
       this.articulos = resp.content as Articulo[];
       this.totalArticulos = resp.totalElements;
       console.log(this.totalArticulos);

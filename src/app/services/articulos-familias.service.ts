@@ -17,7 +17,7 @@ export class ArticulosFamiliasService {
     //this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
 
     // Localhost
-    this.url = 'http://localhost:8080/api';
+    this.url = 'https://pymes-apirest.herokuapp.com/api';
   }
 
   // retorno: observable del array ArticuloFamilia[] proveniente del servidor

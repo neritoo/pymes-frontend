@@ -38,6 +38,28 @@ export class FormArticuloComponent implements OnInit {
     this.cargarFormulario();
   }
 
+  // Getters que serviran para las validaciones.
+
+  get nombreNoValido() {
+    return this.form.get('nombre').invalid && this.form.get('nombre').touched;
+  }
+
+  get precioNoValido() {
+    return this.form.get('precio').invalid && this.form.get('precio').touched;
+  }
+
+  get codigoBarraNoValido() {
+    return this.form.get('codigoBarra').invalid && this.form.get('codigoBarra').touched;
+  }
+
+  get familiaNoValido() {
+    return this.form.get('articulosFamilia').invalid && this.form.get('articulosFamilia').touched;
+  }
+
+  get stockNoValido() {
+    return this.form.get('stock').invalid && this.form.get('stock').touched;
+  }
+
   getFamilias() {
     this.familiaService.getArticulosFamilias().subscribe(familias => this.familias = familias)
   }
@@ -45,11 +67,11 @@ export class FormArticuloComponent implements OnInit {
   crearFormulario() {
     this.form = this.fb.group({
       id: [null],
-      nombre: [null],
-      precio: [null],
-      codigoBarra: [null],
-      articulosFamilia: [null],
-      stock: [null],
+      nombre: [null, [Validators.required, Validators.minLength(4)]],
+      precio: [null, [Validators.required]],
+      codigoBarra: [null, [Validators.required]],
+      articulosFamilia: [null, [Validators.required]],
+      stock: [null, [Validators.required]],
       fechaAlta: [null],
       activo: [true]
     });
@@ -57,6 +79,7 @@ export class FormArticuloComponent implements OnInit {
   }
   
   cargarFormulario() {
+    this.waitAlert();
     this.activatedRoute.params.subscribe( params => {
       let id = params['id'];
       if (id){
@@ -64,10 +87,17 @@ export class FormArticuloComponent implements OnInit {
           this.articulo = articulo;
           this.form.reset(this.articulo);
           console.log(this.form.value.articulosFamilia.id);
+          Swal.close();
         });
       } else {
         return;
       }
+    });
+  }
+
+  marcarControles() {
+    Object.values(this.form.controls).forEach(control => {
+      control.markAsTouched();
     });
   }
 
@@ -76,6 +106,11 @@ export class FormArticuloComponent implements OnInit {
     this.articulo = this.form.value;
     //this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
+    if(this.form.invalid) {
+      this.marcarControles();
+      return;
+    }
+    
     this.articuloService.crearArticulo(this.articulo).subscribe(
       articulo => {
         this.router.navigate(['/articulos']);
@@ -101,6 +136,11 @@ export class FormArticuloComponent implements OnInit {
     this.articulo = this.form.value;
     // this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
+    if (this.form.invalid) {
+      this.marcarControles();
+      return;
+    }
+
     this.articuloService.actualizarArticulo(this.articulo).subscribe(articulo => {
       this.router.navigate(['/articulo', this.articulo.id]);
       Swal.fire({
@@ -119,6 +159,14 @@ export class FormArticuloComponent implements OnInit {
 
   }
 
+  comparar(familia: ArticuloFamilia, familiaArticulo: ArticuloFamilia): boolean {
+    if (familia === undefined && familiaArticulo === undefined) {
+      return true;
+    }
+
+    return familia === null || familiaArticulo === null? false: familia.id === familiaArticulo.id;
+  }
+
   waitAlert() {
     Swal.fire({
       allowOutsideClick: false,
@@ -126,15 +174,7 @@ export class FormArticuloComponent implements OnInit {
       icon: 'info',
       text: 'Espere porfavor',
       timer: 3000
-    })
-  }
-
-  comparar(familia: ArticuloFamilia, familiaArticulo: ArticuloFamilia): boolean {
-    if (familia === undefined && familiaArticulo === undefined) {
-      return true;
-    }
-
-    return familia === null || familiaArticulo === null? false: familia.id === familiaArticulo.id;
+    });
   }
 
 }

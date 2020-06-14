@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticuloFamilia } from 'src/app/clases/articulo-familia';
-import { MockArticulosFamiliasService } from 'src/app/services/mock-articulos-familias.service';
+import Swal from 'sweetalert2';
 import { ArticulosFamiliasService } from 'src/app/services/articulos-familias.service';
 
 @Component({
@@ -23,8 +23,20 @@ export class ArticulosFamiliasComponent implements OnInit {
   }*/
 
   getArticulosFamilias() {
+    this.waitAlert();
     this.articulosFamiliasService.getArticulosFamilias().subscribe(articulosFamilias => {
       this.articulosFamilias = articulosFamilias;
+      Swal.close();
+    });
+  }
+
+  waitAlert() {
+    Swal.fire({
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      icon: 'info',
+      text: 'Espere porfavor',
+      timer: 3000
     });
   }
 

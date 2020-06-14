@@ -23,14 +23,14 @@ export class ArticulosComponent implements OnInit {
     this.getArticulos();    
   }
 
-  
-  
   getArticulos() {
+    this.waitAlert();
     let nombre: string = '';
     let activo: boolean;
     this.articulosService.getArticulos(this.pagina, nombre, activo).subscribe((resp: any) => {
       this.articulos = resp.content as Articulo[];
       this.totalArticulos = resp.totalElements;
+      Swal.close();
       console.log(this.totalArticulos);
     });
   }
@@ -53,6 +53,16 @@ export class ArticulosComponent implements OnInit {
       }
     });
   
+  }
+
+  waitAlert() {
+    Swal.fire({
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      icon: 'info',
+      text: 'Espere porfavor',
+      timer: 3000
+    });
   }
 
 }

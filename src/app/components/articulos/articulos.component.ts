@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from "@angular/forms";
 import Swal from "sweetalert2";
 
 import { Articulo } from 'src/app/clases/articulo';
@@ -15,18 +16,28 @@ export class ArticulosComponent implements OnInit {
   pagina: number = 1;
   totalArticulos: number;
 
-  constructor(private articulosService: ArticulosService) {
+  opcionesActivo = [
+    { id: null, nombre: ""},
+    { id: true, nombre: "Si"},
+    { id: false, nombre: "No"}
+  ];
+
+  form: FormGroup;
+  filtrar: boolean;
+
+  constructor(private articulosService: ArticulosService, private fb: FormBuilder) {
     this.articulos = [];
   }
 
   ngOnInit(): void {
-    this.getArticulos();    
+    this.crearFormulario();
+    this.getArticulos();
   }
 
   getArticulos() {
     this.waitAlert();
-    let nombre: string = '';
-    let activo: boolean;
+    let nombre = this.form.value.articulo;
+    let activo = this.form.value.activo;
     this.articulosService.getArticulos(this.pagina, nombre, activo).subscribe((resp: any) => {
       this.articulos = resp.content as Articulo[];
       this.totalArticulos = resp.totalElements;
@@ -52,7 +63,6 @@ export class ArticulosComponent implements OnInit {
         return;
       }
     });
-  
   }
 
   waitAlert() {
@@ -60,9 +70,17 @@ export class ArticulosComponent implements OnInit {
       allowOutsideClick: false,
       showConfirmButton: false,
       icon: 'info',
-      text: 'Espere porfavor',
-      timer: 3000
+      text: 'Espere porfavor'
     });
+  }
+
+  // Formulario de filtrado
+
+  crearFormulario() {
+    this.form = this.fb.group({
+      articulo: [''],
+      activo: ['']
+    })
   }
 
 }

@@ -79,10 +79,10 @@ export class FormArticuloComponent implements OnInit {
   }
   
   cargarFormulario() {
-    this.waitAlert();
     this.activatedRoute.params.subscribe( params => {
       let id = params['id'];
       if (id){
+        this.waitAlert();
         this.articuloService.getArticulo(id).subscribe((articulo: any) => {
           this.articulo = articulo;
           this.form.reset(this.articulo);
@@ -172,8 +172,7 @@ export class FormArticuloComponent implements OnInit {
       allowOutsideClick: false,
       showConfirmButton: false,
       icon: 'info',
-      text: 'Espere porfavor',
-      timer: 3000
+      text: 'Espere porfavor'
     });
   }
 

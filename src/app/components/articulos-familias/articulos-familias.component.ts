@@ -35,8 +35,7 @@ export class ArticulosFamiliasComponent implements OnInit {
       allowOutsideClick: false,
       showConfirmButton: false,
       icon: 'info',
-      text: 'Espere porfavor',
-      timer: 3000
+      text: 'Espere porfavor'
     });
   }
 

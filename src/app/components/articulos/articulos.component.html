@@ -1,6 +1,6 @@
 <div class="container my-3">
 
-    <div class="my-3" *ngIf="filtrar">
+    <div class="my-3">
         <form autocomplete="off" class="bg-light" [formGroup]='form' (ngSubmit)="getArticulos()">
             <div class="form-group row">
                 <label class="col-form-label col-sm-2 col-sm-offset-1">Articulo</label>
@@ -31,7 +31,6 @@
     <div class="my-5">
         <a type="button" class="btn btn-outline-success" [routerLink]="['/articulos/form']">
             <span class="fa fa-plus">Agregar</span></a>
-        <button *ngIf="!filtrar" (click)="filtrar = !filtrar" class="btn btn-outline-primary"><span class="fa fa-search">Consultar</span></button>
         <table class="table mt-2">
             <thead class="thead-dark">
                 <tr>

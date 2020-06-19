@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from "@angular/forms";
-import Swal from "sweetalert2";
+import { FormGroup, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 import { Articulo } from 'src/app/clases/articulo';
 import { ArticulosService } from 'src/app/services/articulos.service';
@@ -17,13 +17,12 @@ export class ArticulosComponent implements OnInit {
   totalArticulos: number;
 
   opcionesActivo = [
-    { id: null, nombre: ""},
-    { id: true, nombre: "Si"},
-    { id: false, nombre: "No"}
+    { id: null, nombre: ''},
+    { id: true, nombre: 'Si'},
+    { id: false, nombre: 'No'}
   ];
 
   form: FormGroup;
-  filtrar: boolean;
 
   constructor(private articulosService: ArticulosService, private fb: FormBuilder) {
     this.articulos = [];
@@ -36,8 +35,8 @@ export class ArticulosComponent implements OnInit {
 
   getArticulos() {
     this.waitAlert();
-    let nombre = this.form.value.articulo;
-    let activo = this.form.value.activo;
+    const nombre = this.form.value.articulo;
+    const activo = this.form.value.activo;
     this.articulosService.getArticulos(this.pagina, nombre, activo).subscribe((resp: any) => {
       this.articulos = resp.content as Articulo[];
       this.totalArticulos = resp.totalElements;
@@ -49,7 +48,7 @@ export class ArticulosComponent implements OnInit {
   cambiarEstadoArticulo(articulo: Articulo) {
     Swal.fire({
       icon: 'warning',
-      title: `¿${articulo.activo? 'Desactivar' : 'Activar'} artículo?`,
+      title: `¿${articulo.activo ? 'Desactivar' : 'Activar'} artículo?`,
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Confirmar'
@@ -80,7 +79,7 @@ export class ArticulosComponent implements OnInit {
     this.form = this.fb.group({
       articulo: [''],
       activo: ['']
-    })
+    });
   }
 
 }

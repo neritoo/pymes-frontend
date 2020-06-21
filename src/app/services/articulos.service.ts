@@ -16,7 +16,6 @@ export class ArticulosService {
   constructor(private http: HttpClient) {
 
     // Local host
-
     // this.url = 'http://localhost:8080/api'
 
     // Heroku

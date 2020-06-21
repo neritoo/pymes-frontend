@@ -13,6 +13,7 @@ import { ArticulosService } from 'src/app/services/articulos.service';
 export class ArticulosComponent implements OnInit {
 
   articulos: Articulo[];
+  totalPaginas: number;
   pagina: number = 1;
   totalArticulos: number;
 
@@ -44,6 +45,10 @@ export class ArticulosComponent implements OnInit {
       console.log(this.totalArticulos);
     });
   }
+
+  // getArticulos() {
+
+  // }
 
   cambiarEstadoArticulo(articulo: Articulo) {
     Swal.fire({

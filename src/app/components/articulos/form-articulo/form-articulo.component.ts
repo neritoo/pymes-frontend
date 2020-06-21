@@ -126,7 +126,7 @@ export class FormArticuloComponent implements OnInit {
 
     console.log(this.articulo);
 
-    //alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
+    // alert(`Articulo ${this.articulo.Nombre} creado con éxito!`);
     
   }
 

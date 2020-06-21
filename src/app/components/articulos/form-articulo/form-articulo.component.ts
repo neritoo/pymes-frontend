@@ -106,7 +106,7 @@ export class FormArticuloComponent implements OnInit {
     this.articulo = this.form.value;
     //this.articulo.IdArticuloFamilia = this.articulo.ArticulosFamilia.IdArticuloFamilia;
 
-    if(this.form.invalid) {
+    if (this.form.invalid) {
       this.marcarControles();
       return;
     }

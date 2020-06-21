@@ -14,8 +14,6 @@ export class ArticulosService {
   url: string;
 
   constructor(private http: HttpClient) {
-    // Servidor facu
-    //this.url = 'http://labsys.frc.utn.edu.ar:8080/api';
 
     // Local host
 

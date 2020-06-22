@@ -1,18 +1,18 @@
 <div class="container my-3">
 
-    <div class="container my-3">
+    <div class="container mt-3">
 
         <form autocomplete="off" class="bg-light" [formGroup]='form' (ngSubmit)="getArticulos()">
             <div class="form-group row">
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <mat-form-field class="full-width">
                         <mat-label>Articulo</mat-label>
                         <input name="articulo" formControlName="articulo" matInput placeholder="Nombre del articulo" value="">
                     </mat-form-field>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <mat-form-field class="full-width">
                         <mat-label>Activo</mat-label>
                         <mat-select formControlName="activo">
@@ -40,7 +40,7 @@
         </form>
     </div>
 
-    <div class="my-5">
+    <div class="my-3">
 
         <table class="table mt-2">
             <thead class="thead-dark">

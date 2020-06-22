@@ -1,0 +1,21 @@
+<div class="container my-3">
+    <h3 class="text-primary">Empresas</h3>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Razon social</th>
+                <th>Cantidad de empleados</th>
+                <th>Fecha de fundación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empresa of empresas">
+                <td><strong>{{empresa.id}}</strong></td>
+                <td>{{empresa.razonSocial}}</td>
+                <td>{{empresa.cantidadEmpleados}}</td>
+                <td>{{empresa.fechaFundacion | date: "EEEE dd 'de' MMMM yyyy"}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

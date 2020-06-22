@@ -142,7 +142,7 @@ export class FormArticuloComponent implements OnInit {
     }
 
     this.articuloService.actualizarArticulo(this.articulo).subscribe(articulo => {
-      this.router.navigate(['/articulo', this.articulo.id]);
+      this.articulo = articulo;
       Swal.fire({
         icon: 'success',
         title: 'Articulo actualizado',
@@ -150,10 +150,12 @@ export class FormArticuloComponent implements OnInit {
         timer: 3000
       });
     });
-
+    
+    this.router.navigate(['/articulo', this.articulo.id]);
+    
     console.log(this.articulo);
-
-    this.router.navigateByUrl(`/articulo/${this.articulo.id}`);
+    
+    //this.router.navigateByUrl(`/articulo/${this.articulo.id}`);
 
     //alert(`Articulo ${this.articulo.Nombre} actualizado!`);
 

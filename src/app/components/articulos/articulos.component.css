@@ -1,6 +1,7 @@
 form {
     padding: 10px;
     margin-bottom: 1em;
+    background-color: transparent !important;
 }
 
 form button {
